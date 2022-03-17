@@ -75,7 +75,7 @@ mysql 使用 docker hub 映像檔，版本是 8.0.28，網路使用 mynetwork �
 
 這個資料夾是為了代表我們映射在桌面的 docker-volume/html 範例檔案，裡面有 index.php ，會顯示 php 版本、mysql 是否連接成功 ; info.php 則是可以查看 phpinfo() 。
 
-![圖片]()
+![圖片](https://raw.githubusercontent.com/880831ian/docker-compose-php-mysql-nginx/master/images/localhost-7777.png)
 
 <br>
 
