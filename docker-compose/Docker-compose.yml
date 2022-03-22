@@ -6,46 +6,24 @@ services:
     container_name: nginx
     ports:
       - 7777:80
-    networks:
-      mynetwork:
-    volumes_from:
-      - app-data
+    volumes:
+      - ./docker-volume/log/:/var/log/nginx/
 
   php:
     build: ./php/
     container_name: php
-    networks:
-      mynetwork:    
     expose:
       - 9000
-    volumes_from:
-      - app-data
-
-  app-data:
-    image: php:7.4-fpm
-    container_name: app-data
     volumes:
-      - ~/Desktop/docker-volume/html/:/var/www/html/
-      - ~/Desktop/docker-volume/log/:/var/log/nginx/
-    command: "true"
+      - ./docker-volume/html/:/var/www/html/
 
   mysql:
     image: mysql:8.0.28
     container_name: mysql
-    networks:
-      mynetwork:
-        ipv4_address: 172.18.0.2
     volumes:
-      - ~/Desktop/docker-volume/mysql/:/var/lib/mysql
+      - ./docker-volume/mysql/:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: mydb
       MYSQL_USER: myuser
       MYSQL_PASSWORD: password
-      
-networks:
-  mynetwork:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.18.0.0/24
